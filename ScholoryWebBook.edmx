@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ScholarlyWebBook_AppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ANNOTATION_RATINGS">
+          <Key>
+            <PropertyRef Name="RATING_ID" />
+          </Key>
+          <Property Name="RATING_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_LIKED" Type="bit" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="QUESTION_ID" Type="int" />
+          <Property Name="ANSWER_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_COMMENTS">
+          <Key>
+            <PropertyRef Name="COMMENTS_ID" />
+          </Key>
+          <Property Name="COMMENTS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMMENT" Type="nvarchar(max)" />
+          <Property Name="USER_ID" Type="int" />
+          <Property Name="ANSWER_ID" Type="int" />
+          <Property Name="QUESTION_ID" Type="int" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="IS_SEEN" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_Groups">
+          <Key>
+            <PropertyRef Name="Group_ID" />
+          </Key>
+          <Property Name="Group_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group_name" Type="nvarchar(max)" />
+          <Property Name="USER_ID" Type="nvarchar(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar(max)" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_Groups_Emails">
+          <Key>
+            <PropertyRef Name="Group_Email_ID" />
+          </Key>
+          <Property Name="Group_Email_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Group_ID" Type="int" />
+          <Property Name="User_ID" Type="nvarchar(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar(max)" />
+          <Property Name="UPDATED_DATE" Type="datetime" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_PDF_ANSWERS">
+          <Key>
+            <PropertyRef Name="ANSWER_ID" />
+          </Key>
+          <Property Name="ANSWER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ANSWER" Type="nvarchar(max)" />
+          <Property Name="QUESTION_ID" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="IS_FROM_PDF" Type="bit" />
+          <Property Name="START_INDEX" Type="nvarchar(max)" />
+          <Property Name="END_INDEX" Type="nvarchar(max)" />
+          <Property Name="HORIZONTAL_SCROLL" Type="nvarchar(max)" />
+          <Property Name="VERTICAL_SCROLL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TBL_PDF_QUESTION_TAGS">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION" Type="nvarchar(max)" />
+          <Property Name="STATUS_ID" Type="int" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="USER_ID" Type="nvarchar(max)" />
+          <Property Name="PDF_UPLOADED_ID" Type="int" />
+          <Property Name="IsPublic" Type="int" />
+          <Property Name="Notes" Type="text" />
+          <Property Name="Tags" Type="text" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_PDF_UPLOADS">
+          <Key>
+            <PropertyRef Name="PDF_UPLOADED_ID" />
+          </Key>
+          <Property Name="PDF_UPLOADED_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="nvarchar(max)" />
+          <Property Name="PDF_SAVED_PATH" Type="nvarchar(max)" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="FILE_NAME" Type="nvarchar(max)" />
+          <Property Name="STATUS" Type="bit" />
+          <Property Name="PUB_MED_ID" Type="nvarchar(max)" />
+          <Property Name="ARTICLE" Type="nvarchar(max)" />
+          <Property Name="AUTHOR" Type="nvarchar(max)" />
+          <Property Name="DOI_NUMBER" Type="nvarchar(max)" />
+          <Property Name="HTML_CONTENT" Type="nvarchar(max)" />
+          <Property Name="IS_PUBLIC" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_USER_SPECIALIZATION">
+          <Key>
+            <PropertyRef Name="SPECIALIZATION_ID" />
+          </Key>
+          <Property Name="SPECIALIZATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SPECIALIZATION" Type="nvarchar(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar(max)" />
+          <Property Name="CREATION_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="ActivationCode" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="University" Type="varchar" MaxLength="50" />
+          <Property Name="Specialisation" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsEmailVerified" Type="bit" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Specialization_Id" Type="int" />
+          <Property Name="Current_position" Type="nvarchar(max)" />
+          <Property Name="Current_Location" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_group_Id">
+          <End Role="TBL_Groups" Type="Self.TBL_Groups" Multiplicity="0..1" />
+          <End Role="TBL_Groups_Emails" Type="Self.TBL_Groups_Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Groups">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="TBL_Groups_Emails">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS">
+          <End Role="TBL_PDF_QUESTION_TAGS" Type="Self.TBL_PDF_QUESTION_TAGS" Multiplicity="0..1" />
+          <End Role="TBL_PDF_ANSWERS" Type="Self.TBL_PDF_ANSWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PDF_QUESTION_TAGS">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="TBL_PDF_ANSWERS">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS">
+          <End Role="TBL_PDF_UPLOADS" Type="Self.TBL_PDF_UPLOADS" Multiplicity="0..1" />
+          <End Role="TBL_PDF_QUESTION_TAGS" Type="Self.TBL_PDF_QUESTION_TAGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PDF_UPLOADS">
+              <PropertyRef Name="PDF_UPLOADED_ID" />
+            </Principal>
+            <Dependent Role="TBL_PDF_QUESTION_TAGS">
+              <PropertyRef Name="PDF_UPLOADED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Users_TBL_USER_SPECIALIZATION">
+          <End Role="TBL_USER_SPECIALIZATION" Type="Self.TBL_USER_SPECIALIZATION" Multiplicity="0..1" />
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USER_SPECIALIZATION">
+              <PropertyRef Name="SPECIALIZATION_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Users">
+              <PropertyRef Name="Specialization_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScholarlyWebBook_AppDBModelStoreContainer">
+          <EntitySet Name="TBL_ANNOTATION_RATINGS" EntityType="Self.TBL_ANNOTATION_RATINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_COMMENTS" EntityType="Self.TBL_COMMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Groups" EntityType="Self.TBL_Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Groups_Emails" EntityType="Self.TBL_Groups_Emails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PDF_ANSWERS" EntityType="Self.TBL_PDF_ANSWERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PDF_QUESTION_TAGS" EntityType="Self.TBL_PDF_QUESTION_TAGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PDF_UPLOADS" EntityType="Self.TBL_PDF_UPLOADS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_USER_SPECIALIZATION" EntityType="Self.TBL_USER_SPECIALIZATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_group_Id" Association="Self.FK_group_Id">
+            <End Role="TBL_Groups" EntitySet="TBL_Groups" />
+            <End Role="TBL_Groups_Emails" EntitySet="TBL_Groups_Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS" Association="Self.FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS">
+            <End Role="TBL_PDF_QUESTION_TAGS" EntitySet="TBL_PDF_QUESTION_TAGS" />
+            <End Role="TBL_PDF_ANSWERS" EntitySet="TBL_PDF_ANSWERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS" Association="Self.FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS">
+            <End Role="TBL_PDF_UPLOADS" EntitySet="TBL_PDF_UPLOADS" />
+            <End Role="TBL_PDF_QUESTION_TAGS" EntitySet="TBL_PDF_QUESTION_TAGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Users_TBL_USER_SPECIALIZATION" Association="Self.FK_Tbl_Users_TBL_USER_SPECIALIZATION">
+            <End Role="TBL_USER_SPECIALIZATION" EntitySet="TBL_USER_SPECIALIZATION" />
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScholarlyWebBook_AppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_PDF_ANSWERS">
+          <Key>
+            <PropertyRef Name="ANSWER_ID" />
+          </Key>
+          <Property Name="ANSWER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ANSWER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QUESTION_ID" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IS_FROM_PDF" Type="Boolean" />
+          <Property Name="START_INDEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="END_INDEX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HORIZONTAL_SCROLL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VERTICAL_SCROLL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_PDF_QUESTION_TAGS" Relationship="Self.FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS" FromRole="TBL_PDF_ANSWERS" ToRole="TBL_PDF_QUESTION_TAGS" />
+        </EntityType>
+        <EntityType Name="TBL_PDF_QUESTION_TAGS">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS_ID" Type="Int32" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PDF_UPLOADED_ID" Type="Int32" />
+          <Property Name="IsPublic" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TBL_PDF_ANSWERS" Relationship="Self.FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS" FromRole="TBL_PDF_QUESTION_TAGS" ToRole="TBL_PDF_ANSWERS" />
+          <NavigationProperty Name="TBL_PDF_UPLOADS" Relationship="ScholarlyWebBook_AppDBModel.FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS" FromRole="TBL_PDF_QUESTION_TAGS" ToRole="TBL_PDF_UPLOADS" />
+        </EntityType>
+        <Association Name="FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS">
+          <End Role="TBL_PDF_QUESTION_TAGS" Type="Self.TBL_PDF_QUESTION_TAGS" Multiplicity="0..1" />
+          <End Role="TBL_PDF_ANSWERS" Type="Self.TBL_PDF_ANSWERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PDF_QUESTION_TAGS">
+              <PropertyRef Name="QUESTION_ID" />
+            </Principal>
+            <Dependent Role="TBL_PDF_ANSWERS">
+              <PropertyRef Name="QUESTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScholarlyWebBook_AppDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_PDF_ANSWERS" EntityType="Self.TBL_PDF_ANSWERS" />
+          <EntitySet Name="TBL_PDF_QUESTION_TAGS" EntityType="Self.TBL_PDF_QUESTION_TAGS" />
+          <AssociationSet Name="FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS" Association="Self.FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS">
+            <End Role="TBL_PDF_QUESTION_TAGS" EntitySet="TBL_PDF_QUESTION_TAGS" />
+            <End Role="TBL_PDF_ANSWERS" EntitySet="TBL_PDF_ANSWERS" />
+          </AssociationSet>
+          <EntitySet Name="TBL_COMMENTS" EntityType="ScholarlyWebBook_AppDBModel.TBL_COMMENTS" />
+          <EntitySet Name="TBL_Groups" EntityType="ScholarlyWebBook_AppDBModel.TBL_Groups" />
+          <EntitySet Name="TBL_Groups_Emails" EntityType="ScholarlyWebBook_AppDBModel.TBL_Groups_Emails" />
+          <AssociationSet Name="FK_group_Id" Association="ScholarlyWebBook_AppDBModel.FK_group_Id">
+            <End Role="TBL_Groups" EntitySet="TBL_Groups" />
+            <End Role="TBL_Groups_Emails" EntitySet="TBL_Groups_Emails" />
+          </AssociationSet>
+          <EntitySet Name="TBL_ANNOTATION_RATINGS" EntityType="ScholarlyWebBook_AppDBModel.TBL_ANNOTATION_RATINGS" />
+          <EntitySet Name="TBL_USER_SPECIALIZATION" EntityType="ScholarlyWebBook_AppDBModel.TBL_USER_SPECIALIZATION" />
+          <EntitySet Name="Tbl_Users" EntityType="ScholarlyWebBook_AppDBModel.Tbl_Users" />
+          <AssociationSet Name="FK_Tbl_Users_TBL_USER_SPECIALIZATION" Association="ScholarlyWebBook_AppDBModel.FK_Tbl_Users_TBL_USER_SPECIALIZATION">
+            <End Role="TBL_USER_SPECIALIZATION" EntitySet="TBL_USER_SPECIALIZATION" />
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+          </AssociationSet>
+          <EntitySet Name="TBL_PDF_UPLOADS" EntityType="ScholarlyWebBook_AppDBModel.TBL_PDF_UPLOADS" />
+          <AssociationSet Name="FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS" Association="ScholarlyWebBook_AppDBModel.FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS">
+            <End Role="TBL_PDF_UPLOADS" EntitySet="TBL_PDF_UPLOADS" />
+            <End Role="TBL_PDF_QUESTION_TAGS" EntitySet="TBL_PDF_QUESTION_TAGS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TBL_COMMENTS">
+          <Key>
+            <PropertyRef Name="COMMENTS_ID" />
+          </Key>
+          <Property Name="COMMENTS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="ANSWER_ID" Type="Int32" />
+          <Property Name="QUESTION_ID" Type="Int32" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IS_SEEN" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBL_Groups">
+          <Key>
+            <PropertyRef Name="Group_ID" />
+          </Key>
+          <Property Name="Group_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="STATUS" Type="Boolean" />
+          <NavigationProperty Name="TBL_Groups_Emails" Relationship="ScholarlyWebBook_AppDBModel.FK_group_Id" FromRole="TBL_Groups" ToRole="TBL_Groups_Emails" />
+        </EntityType>
+        <EntityType Name="TBL_Groups_Emails">
+          <Key>
+            <PropertyRef Name="Group_Email_ID" />
+          </Key>
+          <Property Name="Group_Email_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Group_ID" Type="Int32" />
+          <Property Name="User_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="STATUS" Type="Boolean" />
+          <NavigationProperty Name="TBL_Groups" Relationship="ScholarlyWebBook_AppDBModel.FK_group_Id" FromRole="TBL_Groups_Emails" ToRole="TBL_Groups" />
+        </EntityType>
+        <Association Name="FK_group_Id">
+          <End Type="ScholarlyWebBook_AppDBModel.TBL_Groups" Role="TBL_Groups" Multiplicity="0..1" />
+          <End Type="ScholarlyWebBook_AppDBModel.TBL_Groups_Emails" Role="TBL_Groups_Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Groups">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="TBL_Groups_Emails">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_ANNOTATION_RATINGS">
+          <Key>
+            <PropertyRef Name="RATING_ID" />
+          </Key>
+          <Property Name="RATING_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_LIKED" Type="Boolean" />
+          <Property Name="USER_ID" Type="Int32" />
+          <Property Name="QUESTION_ID" Type="Int32" />
+          <Property Name="ANSWER_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBL_USER_SPECIALIZATION">
+          <Key>
+            <PropertyRef Name="SPECIALIZATION_ID" />
+          </Key>
+          <Property Name="SPECIALIZATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SPECIALIZATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tbl_Users" Relationship="ScholarlyWebBook_AppDBModel.FK_Tbl_Users_TBL_USER_SPECIALIZATION" FromRole="TBL_USER_SPECIALIZATION" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="ActivationCode" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="University" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Specialisation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailVerified" Type="Boolean" />
+          <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+          <Property Name="Specialization_Id" Type="Int32" />
+          <Property Name="Current_position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Current_Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TBL_USER_SPECIALIZATION" Relationship="ScholarlyWebBook_AppDBModel.FK_Tbl_Users_TBL_USER_SPECIALIZATION" FromRole="Tbl_Users" ToRole="TBL_USER_SPECIALIZATION" />
+        </EntityType>
+        <Association Name="FK_Tbl_Users_TBL_USER_SPECIALIZATION">
+          <End Type="ScholarlyWebBook_AppDBModel.TBL_USER_SPECIALIZATION" Role="TBL_USER_SPECIALIZATION" Multiplicity="0..1" />
+          <End Type="ScholarlyWebBook_AppDBModel.Tbl_Users" Role="Tbl_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_USER_SPECIALIZATION">
+              <PropertyRef Name="SPECIALIZATION_ID" />
+            </Principal>
+            <Dependent Role="Tbl_Users">
+              <PropertyRef Name="Specialization_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_PDF_UPLOADS">
+          <Key>
+            <PropertyRef Name="PDF_UPLOADED_ID" />
+          </Key>
+          <Property Name="PDF_UPLOADED_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PDF_SAVED_PATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FILE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="Boolean" />
+          <Property Name="PUB_MED_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ARTICLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOI_NUMBER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HTML_CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IS_PUBLIC" Type="Boolean" />
+          <NavigationProperty Name="TBL_PDF_QUESTION_TAGS" Relationship="ScholarlyWebBook_AppDBModel.FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS" FromRole="TBL_PDF_UPLOADS" ToRole="TBL_PDF_QUESTION_TAGS" />
+        </EntityType>
+        <Association Name="FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS">
+          <End Type="ScholarlyWebBook_AppDBModel.TBL_PDF_UPLOADS" Role="TBL_PDF_UPLOADS" Multiplicity="0..1" />
+          <End Type="ScholarlyWebBook_AppDBModel.TBL_PDF_QUESTION_TAGS" Role="TBL_PDF_QUESTION_TAGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PDF_UPLOADS">
+              <PropertyRef Name="PDF_UPLOADED_ID" />
+            </Principal>
+            <Dependent Role="TBL_PDF_QUESTION_TAGS">
+              <PropertyRef Name="PDF_UPLOADED_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScholarlyWebBook_AppDBModelStoreContainer" CdmEntityContainer="ScholarlyWebBook_AppDBEntities">
+          <EntitySetMapping Name="TBL_PDF_ANSWERS">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_PDF_ANSWERS">
+              <MappingFragment StoreEntitySet="TBL_PDF_ANSWERS">
+                <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+                <ScalarProperty Name="ANSWER" ColumnName="ANSWER" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="IS_FROM_PDF" ColumnName="IS_FROM_PDF" />
+                <ScalarProperty Name="START_INDEX" ColumnName="START_INDEX" />
+                <ScalarProperty Name="END_INDEX" ColumnName="END_INDEX" />
+                <ScalarProperty Name="HORIZONTAL_SCROLL" ColumnName="HORIZONTAL_SCROLL" />
+                <ScalarProperty Name="VERTICAL_SCROLL" ColumnName="VERTICAL_SCROLL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PDF_QUESTION_TAGS">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_PDF_QUESTION_TAGS">
+              <MappingFragment StoreEntitySet="TBL_PDF_QUESTION_TAGS">
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION" ColumnName="QUESTION" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PDF_UPLOADED_ID" ColumnName="PDF_UPLOADED_ID" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_COMMENTS">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_COMMENTS">
+              <MappingFragment StoreEntitySet="TBL_COMMENTS">
+                <ScalarProperty Name="IS_SEEN" ColumnName="IS_SEEN" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+                <ScalarProperty Name="COMMENTS_ID" ColumnName="COMMENTS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Groups">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_Groups">
+              <MappingFragment StoreEntitySet="TBL_Groups">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="Group_name" ColumnName="Group_name" />
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Groups_Emails">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_Groups_Emails">
+              <MappingFragment StoreEntitySet="TBL_Groups_Emails">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Group_Email_ID" ColumnName="Group_Email_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ANNOTATION_RATINGS">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_ANNOTATION_RATINGS">
+              <MappingFragment StoreEntitySet="TBL_ANNOTATION_RATINGS">
+                <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="IS_LIKED" ColumnName="IS_LIKED" />
+                <ScalarProperty Name="RATING_ID" ColumnName="RATING_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_USER_SPECIALIZATION">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_USER_SPECIALIZATION">
+              <MappingFragment StoreEntitySet="TBL_USER_SPECIALIZATION">
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="SPECIALIZATION" ColumnName="SPECIALIZATION" />
+                <ScalarProperty Name="SPECIALIZATION_ID" ColumnName="SPECIALIZATION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Users">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.Tbl_Users">
+              <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Current_Location" ColumnName="Current_Location" />
+                <ScalarProperty Name="Current_position" ColumnName="Current_position" />
+                <ScalarProperty Name="Specialization_Id" ColumnName="Specialization_Id" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Specialisation" ColumnName="Specialisation" />
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PDF_UPLOADS">
+            <EntityTypeMapping TypeName="ScholarlyWebBook_AppDBModel.TBL_PDF_UPLOADS">
+              <MappingFragment StoreEntitySet="TBL_PDF_UPLOADS">
+                <ScalarProperty Name="IS_PUBLIC" ColumnName="IS_PUBLIC" />
+                <ScalarProperty Name="HTML_CONTENT" ColumnName="HTML_CONTENT" />
+                <ScalarProperty Name="DOI_NUMBER" ColumnName="DOI_NUMBER" />
+                <ScalarProperty Name="AUTHOR" ColumnName="AUTHOR" />
+                <ScalarProperty Name="ARTICLE" ColumnName="ARTICLE" />
+                <ScalarProperty Name="PUB_MED_ID" ColumnName="PUB_MED_ID" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="FILE_NAME" ColumnName="FILE_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="PDF_SAVED_PATH" ColumnName="PDF_SAVED_PATH" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PDF_UPLOADED_ID" ColumnName="PDF_UPLOADED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

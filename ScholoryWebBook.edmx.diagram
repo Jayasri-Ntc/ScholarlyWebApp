@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e879a0b54165449ba7311008e977e22c" Name="Diagram1">
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_PDF_ANSWERS" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_PDF_QUESTION_TAGS" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ScholarlyWebBook_AppDBModel.FK_TBL_PDF_ANSWERS_TBL_PDF_QUESTION_TAGS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_COMMENTS" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_Groups" Width="1.5" PointX="3.375" PointY="6.125" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_Groups_Emails" Width="1.5" PointX="5.625" PointY="6" />
+        <AssociationConnector Association="ScholarlyWebBook_AppDBModel.FK_group_Id" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_ANNOTATION_RATINGS" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_USER_SPECIALIZATION" Width="1.5" PointX="8.375" PointY="9" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.Tbl_Users" Width="1.5" PointX="10.625" PointY="8" />
+        <AssociationConnector Association="ScholarlyWebBook_AppDBModel.FK_Tbl_Users_TBL_USER_SPECIALIZATION" />
+        <EntityTypeShape EntityType="ScholarlyWebBook_AppDBModel.TBL_PDF_UPLOADS" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="ScholarlyWebBook_AppDBModel.FK_TBL_PDF_QUESTION_TAGS_TBL_PDF_UPLOADS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
